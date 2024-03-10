@@ -23,7 +23,7 @@ const languages = {
   Scala: '.scala',
   Swift: '.swift',
   TypeScript: '.ts',
-}
+};
 
 /* Commit messages */
 const readmeMsg = 'Create README - LeetHub';
@@ -157,12 +157,12 @@ const update = (
     .then(existingContent =>
       shouldPreprendDiscussionPosts
         ? // https://web.archive.org/web/20190623091645/https://monsur.hossa.in/2012/07/20/utf-8-in-javascript.html
-        // In order to preserve mutation of the data, we have to encode it, which is usually done in base64.
-        // But btoa only accepts ASCII 7 bit chars (0-127) while Javascript uses 16-bit minimum chars (0-65535).
-        // EncodeURIComponent converts the Unicode Points UTF-8 bits to hex UTF-8.
-        // Unescape converts percent-encoded hex values into regular ASCII (optional; it shrinks string size).
-        // btoa converts ASCII to base64.
-        btoa(unescape(encodeURIComponent(addition + existingContent)))
+          // In order to preserve mutation of the data, we have to encode it, which is usually done in base64.
+          // But btoa only accepts ASCII 7 bit chars (0-127) while Javascript uses 16-bit minimum chars (0-65535).
+          // EncodeURIComponent converts the Unicode Points UTF-8 bits to hex UTF-8.
+          // Unescape converts percent-encoded hex values into regular ASCII (optional; it shrinks string size).
+          // btoa converts ASCII to base64.
+          btoa(unescape(encodeURIComponent(addition + existingContent)))
         : btoa(unescape(encodeURIComponent(existingContent))),
     )
     .then(newContent =>
@@ -338,7 +338,7 @@ function LeetCodeV1() {
   this.progressSpinnerElementClass = 'leethub_progress';
   this.injectSpinnerStyle();
 }
-LeetCodeV1.prototype.init = async function () { };
+LeetCodeV1.prototype.init = async function () {};
 /* Function for finding and parsing the full code. */
 /* - At first find the submission details url. */
 /* - Then send a request for the details page. */
@@ -658,7 +658,7 @@ LeetCodeV2.prototype.init = async function () {
   async function getSubmissionId() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        const submissionId = document.URL.match(/\/(\d+)\/?$/)[1]; // '/problems/two-sum/post-solution?submissionId=999594717'
+        const submissionId = document.URL.match(/\/(\d+)\/\?/)[1];
         resolve(submissionId);
       }, 100);
     });
@@ -737,7 +737,7 @@ LeetCodeV2.prototype.getLanguageExtension = function () {
 
   return languages[lang];
 };
-LeetCodeV2.prototype.getNotesIfAny = function () { };
+LeetCodeV2.prototype.getNotesIfAny = function () {};
 LeetCodeV2.prototype.getProblemNameSlug = function () {
   const slugTitle = this.submissionData.question.titleSlug;
   const qNum = this.submissionData.question.questionId;
@@ -768,7 +768,7 @@ LeetCodeV2.prototype.parseStats = function () {
   }
 
   // Doesn't work unless we wait for page to finish loading.
-  setTimeout(() => { }, 1000);
+  setTimeout(() => {}, 1000);
   const probStats = document.getElementsByClassName('flex w-full pb-4')[0].innerText.split('\n');
   if (!checkElem(probStats)) {
     return null;
@@ -921,7 +921,7 @@ chrome.storage.local.get('isSync', data => {
   }
 });
 
-const loader = (leetCode) => {
+const loader = leetCode => {
   let iterations = 0;
   const intervalId = setInterval(async () => {
     try {
@@ -1034,7 +1034,7 @@ const observer = new MutationObserver(function (_mutations, observer) {
   const textareaList = document.getElementsByTagName('textarea');
   const textarea = textareaList.length === 4 ? textareaList[2] : textareaList[1];
 
-  if(v1SubmitBtn) {
+  if (v1SubmitBtn) {
     observer.disconnect();
 
     const leetCode = new LeetCodeV1();
@@ -1042,7 +1042,7 @@ const observer = new MutationObserver(function (_mutations, observer) {
     return;
   }
 
-  if(v2SubmitBtn && textarea) {
+  if (v2SubmitBtn && textarea) {
     observer.disconnect();
 
     const leetCode = new LeetCodeV2();
